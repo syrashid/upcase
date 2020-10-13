@@ -38,7 +38,12 @@ RSpec.describe Person do
     end
   end
 
-  describe "#full_name_with_middle_initial"
+  describe "#full_name_with_middle_initial" do
+    it "concatenates first name, middle initial, and last name with spaces" do
+      person = Person.new(first_name: "Alpha", middle_name: "Beta", last_name: "Gamma")
+      expect(person.full_name).to eq('Alpha B Gamma')
+    end
+  end
 
   describe "#initials"
 end
