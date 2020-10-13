@@ -24,6 +24,14 @@ class Person
   def full_name
     "#{@first_name} #{@middle_name + ' ' if @middle_name}#{@last_name}"
   end
+
+  def full_name_with_middle_initial
+    "#{@first_name} #{@middle_name[0] + ' ' if @middle_name}#{@last_name}"
+  end
+
+  def initials
+    "#{@first_name[0]}#{@middle_name[0] if @middle_name}#{@last_name[0]}"
+  end
 end
 
 RSpec.describe Person do
@@ -41,9 +49,22 @@ RSpec.describe Person do
   describe "#full_name_with_middle_initial" do
     it "concatenates first name, middle initial, and last name with spaces" do
       person = Person.new(first_name: "Alpha", middle_name: "Beta", last_name: "Gamma")
-      expect(person.full_name).to eq('Alpha B Gamma')
+      expect(person.full_name_with_middle_initial).to eq('Alpha B Gamma')
+    end
+    it "does not add extra spaces if middle name is missing" do
+      person = Person.new(first_name: "Alpha", last_name: "Gamma")
+      expect(person.full_name_with_middle_initial).to eq('Alpha Gamma')
     end
   end
 
-  describe "#initials"
+  describe "#initials" do
+    it "returns the first, middle, and last name initials" do
+       person = Person.new(first_name: "Alpha", middle_name: "Beta", last_name: "Gamma")
+      expect(person.initials).to eq('ABG')
+    end
+    it "should return two characters for a missing middle name" do
+      person = Person.new(first_name: "Alpha", last_name: "Gamma")
+      expect(person.initials).to eq('AG')
+    end
+  end
 end
