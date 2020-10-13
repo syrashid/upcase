@@ -32,7 +32,10 @@ RSpec.describe Person do
       person = Person.new(first_name: "Alpha", middle_name: "Beta", last_name: "Gamma")
       expect(person.full_name).to eq('Alpha Beta Gamma')
     end
-    it "does not add extra spaces if middle name is missing"
+    it "does not add extra spaces if middle name is missing" do
+      person = Person.new(first_name: "Alpha", last_name: "Gamma")
+      expect(person.full_name).to eq('Alpha Gamma')
+    end
   end
 
   describe "#full_name_with_middle_initial"
