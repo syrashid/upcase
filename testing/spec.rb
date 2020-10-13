@@ -22,7 +22,7 @@ class Person
 
   # implement your behavior here
   def full_name
-    "#{@first_name} #{@middle_name} #{@last_name}"
+    "#{@first_name} #{@middle_name + ' ' if @middle_name}#{@last_name}"
   end
 end
 
