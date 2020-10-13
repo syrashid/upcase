@@ -25,7 +25,10 @@ end
 
 RSpec.describe Person do
   describe "#full_name" do
-    it "concatenates first name, middle name, and last name with spaces"
+    it "concatenates first name, middle name, and last name with spaces" do
+      person = Person.new("Alpha", "Beta", "Gamma")
+      expect(person.full_name).to eq('Alpha Beta Gamma')
+    end
     it "does not add extra spaces if middle name is missing"
   end
 
